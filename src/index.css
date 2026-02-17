@@ -1,0 +1,133 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+header{
+  background-color: #d5f1f2;
+}
+.brand-title{
+  color: #08423E;
+}
+
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
+
+/* Category Section */
+.category-section {
+  padding-top: 30px;
+}
+
+/* Banner */
+.category-banner img {
+  border-radius: 20px;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+/* Category Title */
+.category-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f5132;
+}
+
+/* View All */
+.view-all {
+  text-decoration: none;
+  color: #0f5132;
+  font-weight: 500;
+}
+
+.view-all:hover {
+  text-decoration: underline;
+}
+
+/* Article Box */
+.article-box {
+  padding: 25px;
+  border-radius: 20px;
+  min-height: 150px;
+  transition: transform 0.2s ease;
+}
+
+.article-box:hover {
+  transform: translateY(-5px);
+}
+
+/* Article Heading */
+.article-heading {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+/* Article Date */
+.article-date {
+  font-size: 0.9rem;
+  color: #1b4332;
+}
+
+/* Pastel Backgrounds */
+.pastel-green {
+  background-color: #cdeccd;
+}
+
+.pastel-blue {
+  background-color: #d5f1f2;
+}
+
+.pastel-pink {
+  background-color: #f6d4cc;
+}
+
+/* Auth Page Layout */
+.auth-wrapper {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.auth-title {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.auth-link {
+  color: var(--bs-primary);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+.auth-background {
+  background: linear-gradient(
+    135deg,
+    #e8f5e9,
+    #f1f8e9
+  );
+}
+
+
