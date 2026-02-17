@@ -1,4 +1,4 @@
-const ENV = import.meta.env.APP_ENV || "local";
+const ENV = import.meta.env.VITE_APP_ENV || "local";
 
 const configs = {
   local: {
