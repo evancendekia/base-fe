@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
-const pastelColors = [
-    "pastel-green",
-    "pastel-blue",
-    "pastel-pink",
-];
+import { formatDate } from "../utils/date.utils";
+// const pastelColors = [
+//     "pastel-green",
+//     "pastel-blue",
+//     "pastel-pink",
+// ];
 
 const ArticleCard = ({ article, index  }) => {
   const user = useSelector((state) => state.auth.user);
@@ -13,7 +14,7 @@ const ArticleCard = ({ article, index  }) => {
     user?.plan !== "premium";
 
     
-  const colorClass = pastelColors[index % 3];
+  // const colorClass = pastelColors[index % 3];
 
   return (
     <>
@@ -23,10 +24,10 @@ const ArticleCard = ({ article, index  }) => {
           className="img-fluid w-100 rounded-3"
       />
       <h4 className="article-heading">
-        {article.title}
+        {article.title} {article.is_premium && <i className="fa-solid fa-crown text-warning fa-2xs"></i>}
       </h4>
       <div className="article-date">
-        <i className="fa-solid fa-calendar"></i> {article.date || "January 1, 2026"}
+        <i className="fa-solid fa-calendar"></i> {formatDate(article.publishedAt) || "January 1, 2026"}
       </div>
     </>
   );

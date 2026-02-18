@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../modules/auth.slice";
 import "../Login.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
 
@@ -10,14 +10,30 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { loading, error } = useSelector(
     (state) => state.auth
   );
 
-  const handleLogin = (e) => {
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    dispatch(loginUser({ email: email, password: password }));
+
+    const result = await dispatch(
+      loginUser({
+        email,
+        password,
+      })
+    );
+    if (result.meta.requestStatus === "fulfilled") {
+      if(result.payload.user.preferenceCompleted){
+        navigate("/");
+      }else{
+          navigate("/user");
+      }
+    }
   };
+
 
   return (
     <section className="vh-100">
@@ -85,7 +101,7 @@ const Login = () => {
                   type="submit"
                   className="btn btn-success btn-lg w-100"
                 >
-                  Login
+                  Sign In
                 </button>
 
                 <p className="small fw-bold mt-2 pt-1 mb-0">
@@ -96,7 +112,7 @@ const Login = () => {
                         to="/signup"
                         className="link-success"
                     >
-                        Register
+                        Sign Up
                     </Link>
                 </p>
               </div>

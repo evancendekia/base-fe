@@ -3,15 +3,17 @@ import config from "../config";
 
 export const be_api = {
   articles: {
-    getGrouped: async () => {
-
-      console.log("API response for grouped articles:");
-      console.log("Base URL:", config.BASE_URL);   
-      console.log(" URL:",  `${config.BASE_URL}/articles/grouped`);
-      const res = await axios.get(
-        `${config.BASE_URL}/articles/grouped`
+    getGrouped: async (preferences) => {
+      const res = await axios.post(
+        `${config.BASE_URL}/articles/grouped`,
+        { preferences: preferences }
       );
-      console.log("Full response:", res);
+      return res.data.data;
+    },
+    getDetails: async (articleId) => {
+      const res = await axios.get(
+        `${config.BASE_URL}/articles/${articleId}`
+      );
       return res.data.data;
     },
   },
@@ -36,8 +38,6 @@ export const be_api = {
     },
 
     register: async (data) => {
-        console.log("Registering user with data:", data); // Debug log
-        console.log("process.env.BASE_URL",config.BASE_URL)
       const res = await axios.post(`${config.BASE_URL}/auth/register`, {
         email: data.email,
         password: data.password,
@@ -57,5 +57,15 @@ export const be_api = {
         });
         return res.data;
     },
+    savePreferences: async (topics) => {
+        const res = await axios.post(`${config.BASE_URL}/user/updatePreferences`, {
+            topics
+        }, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("authorization_token")}`
+            }
+        });
+        return res.data;
+    }
   }
 };

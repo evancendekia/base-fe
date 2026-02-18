@@ -6,12 +6,19 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.auth.user);
   const { grouped, loading } = useSelector(
     (state) => state.articles
   );
   useEffect(() => {
-    dispatch(fetchGroupedArticles());
-  }, [dispatch]);
+    if (user && user.preferenceCompleted && user.preferences) {
+        dispatch(fetchGroupedArticles(user.preferences));
+
+    }else {
+        dispatch(fetchGroupedArticles());
+    }
+  }, [dispatch, user]);
 
   if (loading) return <p>Loading...</p>;
 
@@ -48,10 +55,15 @@ const Home = () => {
                     <div className="row g-4">
                         {category.articles.map((article, index) => (
                         <div key={article.id} className="col-md-6">
-                            <ArticleCard
-                            article={article}
-                            index={index}
-                            />
+                            <Link
+                                to={`/article/${article.slug}`}
+                                style={{ textDecoration: "none", color: "inherit" }}
+                            >
+                                <ArticleCard
+                                    article={article}
+                                    index={index}
+                                />
+                            </Link>
                         </div>
                         ))}
                     </div>

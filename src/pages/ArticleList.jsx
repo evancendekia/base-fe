@@ -14,7 +14,6 @@ const ArticleList = () => {
     dispatch(fetchTopicsDetails(window.location.pathname.split("/").pop()));
   }, [dispatch]);
 
-  console.log("topicDetailsLoading", topicDetailsLoading);
   if (topicDetailsLoading) return <p>Loading...</p>;
 
   return (  
@@ -51,10 +50,15 @@ const ArticleList = () => {
                     <div className="row g-4">
                         {category.articles.map((article, index) => (
                         <div key={article.id} className="col-md-3">
-                            <ArticleCard
-                            article={article}
-                            index={index}
-                            />
+                            <Link
+                                to={`/article/${article.slug}`}
+                                style={{ textDecoration: "none", color: "inherit" }}
+                            >
+                                <ArticleCard
+                                    article={article}
+                                    index={index}
+                                />
+                            </Link>
                         </div>
                         ))}
                     </div>

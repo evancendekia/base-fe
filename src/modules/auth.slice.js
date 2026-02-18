@@ -61,6 +61,9 @@ const authSlice = createSlice({
       state.token = null;
       localStorage.removeItem(LOCAL_STORAGE_KEY);
     },
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -73,7 +76,6 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
-        console.log("Login successful, storing token:", action.payload.token); // Debug log
         localStorage.setItem(LOCAL_STORAGE_KEY, action.payload.token);
       })
       .addCase(loginUser.rejected, (state, action) => {
@@ -90,11 +92,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
-
-        localStorage.setItem(
-          LOCAL_STORAGE_KEY,
-          JSON.stringify(action.payload),
-        );
+        localStorage.setItem(LOCAL_STORAGE_KEY, action.payload.token);
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
@@ -109,5 +107,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, setUser } = authSlice.actions;
 export default authSlice.reducer;
