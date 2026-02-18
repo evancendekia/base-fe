@@ -1,16 +1,89 @@
-# React + Vite
+# Frontend Application (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is the frontend application built using React and Vite. It provides the user interface for authentication, personalized content, and article browsing.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## React Compiler
+- React
+- Vite
+- REST API integration
+- JWT Authentication
+- Cloudflare CDN (media delivery)
+- Vercel (deployment)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Setup Instructions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+Ensure the following are installed:
+
+- Node.js (v18 or later)
+- npm
+
+Check versions:
+
+```bash
+node -v
+npm -v
+```
+
+---
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/evancendekia/base-fe.git
+cd base-fe
+```
+
+---
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+### 3. Configure Environment Variables
+
+Create a `.env` file:
+
+```env
+VITE_APP_ENV=local
+```
+
+---
+
+### 4. Run Development Server
+
+```bash
+npm run dev
+```
+
+Application runs at:
+
+```
+http://localhost:5173
+```
+
+---
+
+### 5. Build for Production
+
+```bash
+npm run build
+```
+
+---
+
+## Production Deployment
+
+Frontend URL:
+
+https://assignment-fe.evancendekia.com

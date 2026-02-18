@@ -15,7 +15,6 @@ function App() {
     }
   }, [dispatch]);
 
-  console.log("app env", import.meta.env);
   return <AppRoutes />;
 }
 

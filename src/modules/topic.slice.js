@@ -11,7 +11,6 @@ export const fetchAllTopics = createAsyncThunk(
 export const fetchTopicsDetails = createAsyncThunk(
   "topics/:slug",
   async (slug) => {
-    console.log("Fetching details for topic slug:", slug); // Debug log
     return await be_api.topics.getDetails(slug);
   }
 );
@@ -33,7 +32,6 @@ const topicSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchAllTopics.fulfilled, (state, action) => {
-        console.log("Fetched topics:", action.payload); // Debug log
         state.loading = false;
         state.topics = action.payload;
       })
@@ -47,7 +45,6 @@ const topicSlice = createSlice({
         state.topicDetailsLoading = true;
       })
       .addCase(fetchTopicsDetails.fulfilled, (state, action) => {
-        console.log("Fetched topic details:", action.payload); // Debug log
         state.topicDetailsLoading = false;
         state.topicDetails = action.payload;
       })

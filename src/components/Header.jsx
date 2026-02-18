@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../modules/auth.slice";
 
 const Header = () => {
-  // const user = useSelector((state) => state.auth.user);
-  // console.log("Current user in Header:", user); // Debug log to check user state
 
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
@@ -12,7 +10,7 @@ const Header = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/"); // optional redirect after logout
+    navigate("/"); 
   };
 
   return (
@@ -51,6 +49,11 @@ const Header = () => {
 
                 <ul className="dropdown-menu dropdown-menu-end">
                   <li>
+                    <Link to="/" className="dropdown-item">
+                      My Dashboard
+                    </Link>
+                  </li>
+                  <li>
                     <Link to="/user" className="dropdown-item">
                       My Profile
                     </Link>
@@ -71,9 +74,17 @@ const Header = () => {
                 </ul>
               </div>
             ) : (
-              <Link to="/login" className="btn btn-outline-success nav-btn">
-                Login
-              </Link>
+              <>
+
+                <Link to="/login" className="btn btn-outline-success nav-btn mx-2">
+                  Sign In
+                </Link>
+
+                <Link to="/signup" className="btn btn-outline-success nav-btn">
+                  Sign Up
+                </Link>
+              </>
+              
             )}
           </div>
         </div>

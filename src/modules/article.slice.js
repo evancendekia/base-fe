@@ -1,12 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { be_api } from "../api/api";
+import ArticleDetails from "../pages/ArticleDetails";
 
 export const fetchGroupedArticles = createAsyncThunk(
   "articles/fetchGroupedArticles",
-  async () => {
+  async (preferences) => {
+    return await be_api.articles.getGrouped(preferences);
+  }
+);
 
-      console.log("load2")
-    return await be_api.articles.getGrouped();
+export const fetchDetailsArticles = createAsyncThunk(
+  "articles/fetchDetailsArticles",
+  async (articleId) => {
+    return await be_api.articles.getDetails(articleId);
   }
 );
 
@@ -16,6 +22,8 @@ const articleSlice = createSlice({
   initialState: {
     grouped: [],
     loading: false,
+    articleDetails: null,
+    articleDetailsLoading: true,
   },
   extraReducers: (builder) => {
     builder
@@ -28,6 +36,19 @@ const articleSlice = createSlice({
       })
       .addCase(fetchGroupedArticles.rejected, (state) => {
         state.loading = false;
+      })
+
+
+      .addCase(fetchDetailsArticles.pending, (state) => {
+        state.articleDetailsLoading = true;
+      })
+      .addCase(fetchDetailsArticles.fulfilled, (state, action) => {
+        state.articleDetailsLoading = false;
+        state.articleDetails = action.payload;
+
+      })
+      .addCase(fetchDetailsArticles.rejected, (state) => {
+        state.articleDetailsLoading = false;
       });
   },
 });

@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import User from "../pages/User";
 import ArticleList from "../pages/ArticleList";
+import ArticleDetails from "../pages/ArticleDetails";
 
 const AppRoutes = () => {
   return (
@@ -22,6 +23,7 @@ const AppRoutes = () => {
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/user" element={<User />} />
                     <Route path="/topics/:slug" element={<ArticleList />} />
+                    <Route path="/article/:slug" element={<ArticleDetails />} />
                 </Routes>
             </main>
 
