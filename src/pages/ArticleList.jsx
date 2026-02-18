@@ -1,27 +1,29 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGroupedArticles } from "../modules/article.slice";
+// import { fetchGroupedArticles } from "../modules/article.slice";
+import { fetchTopicsDetails } from "../modules/topic.slice";
 import ArticleCard from "../components/ArticleCard";
 import { Link } from "react-router-dom";
 
-const Home = () => {
+const ArticleList = () => {
   const dispatch = useDispatch();
-  const { grouped, loading } = useSelector(
-    (state) => state.articles
+  const { topicDetails, topicDetailsLoading } = useSelector(
+    (state) => state.topics
   );
   useEffect(() => {
-    dispatch(fetchGroupedArticles());
+    dispatch(fetchTopicsDetails(window.location.pathname.split("/").pop()));
   }, [dispatch]);
 
-  if (loading) return <p>Loading...</p>;
+  console.log("topicDetailsLoading", topicDetailsLoading);
+  if (topicDetailsLoading) return <p>Loading...</p>;
 
   return (  
     <main style={{ padding: 20 }}>  
         <div className="container my-5">
             <div className="row">
 
-                {grouped.map((category) => (
-                    <div key={category.id} className="category-section mb-5 col-md-6">
+                {topicDetails.map((category) => (
+                    <div key={category.id} className="category-section mb-5 col-md-12">
 
                     {/* Banner */}
                     {category.banner && (
@@ -34,20 +36,21 @@ const Home = () => {
                         </div>
                     )}
 
-                    {/* Title + View All */}
                     <div className="d-flex justify-content-between align-items-center mb-4">
                         <h2 className="category-title">
                         {category.name}
                         </h2>
-                        <Link to={`/topics/${category.slug}`} className="view-all">
-                            View All
-                        </Link>
+                    </div>
+                    <div className="d-flex justify-content-between align-items-center mb-4">
+                        <p >
+                        {category.description}
+                        </p>
                     </div>
 
                     {/* Articles Grid */}
                     <div className="row g-4">
                         {category.articles.map((article, index) => (
-                        <div key={article.id} className="col-md-6">
+                        <div key={article.id} className="col-md-3">
                             <ArticleCard
                             article={article}
                             index={index}
@@ -66,4 +69,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ArticleList;
