@@ -20,6 +20,10 @@ export const be_api = {
       const res = await axios.get(`${config.BASE_URL}/topics/getAll`);
       return res.data.data;
     },
+    getDetails: async (slug) => {
+      const res = await axios.get(`${config.BASE_URL}/topics/${slug}`);
+      return res.data.data;
+    },
   },
 
   auth: {

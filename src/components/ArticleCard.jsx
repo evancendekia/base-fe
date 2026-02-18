@@ -16,15 +16,19 @@ const ArticleCard = ({ article, index  }) => {
   const colorClass = pastelColors[index % 3];
 
   return (
-    <div className={`article-box ${colorClass}`}>
-      <h5 className="article-heading">
+    <>
+      <img
+          src={article.image}
+          alt={article.title}
+          className="img-fluid w-100 rounded-3"
+      />
+      <h4 className="article-heading">
         {article.title}
-      </h5>
-
+      </h4>
       <div className="article-date">
-        {article.date || "January 1, 2026"}
+        <i className="fa-solid fa-calendar"></i> {article.date || "January 1, 2026"}
       </div>
-    </div>
+    </>
   );
 };
 export default ArticleCard;
