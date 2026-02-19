@@ -15,7 +15,7 @@ const configs = {
 
   production: {
     APP_NAME: "Technical Test FE",
-    BASE_URL: "https://base-be-production.up.railway.app/api",
+    BASE_URL: "https://assignment-be.evancendekia.com/api",
     ENABLE_LOGGING: false,
   },
 };
