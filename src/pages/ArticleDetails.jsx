@@ -67,7 +67,7 @@ const ArticleDetails = () => {
             <div className="premium-content-wrapper">
               <div
                 className={`premium-content ${
-                  (articleDetails.is_premium && user && user.subscription == null) || user == null ? "premium-locked" : ""
+                  (articleDetails.is_premium ? (user && user.subscription == null) || user == null ? "premium-locked" : "" : "")
                 }`}
               >
                 <BlocksRenderer content={articleDetails.content} />
@@ -88,7 +88,8 @@ const ArticleDetails = () => {
                 )}
               </div>
 
-              {(articleDetails.is_premium && user && user.subscription == null) || user == null ? (
+              {
+                  (articleDetails.is_premium ? (user && user.subscription == null) || user == null ?  (
                     <div className="premium-overlay">
                     <div className="premium-overlay-content">
                         <h4>Subscribe to read the full article</h4>
@@ -99,7 +100,7 @@ const ArticleDetails = () => {
                         </Link>
                     </div>
                     </div>
-              ):(<></>)}
+              ):(<></>):(<></>))}
             </div>
           </div>
         </div>
